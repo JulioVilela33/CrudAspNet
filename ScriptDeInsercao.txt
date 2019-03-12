@@ -1,0 +1,49 @@
+
+Declare @I TinyInt, @Texto Char(100),   
+
+Set @Texto = ‘ROBERTOCARLAJOSEALBERTOJOSEMARIAJOAOCAIOFULANOESICRANO’
+
+Set @Id = 50 
+
+While (@Id < 100)
+
+Begin
+
+Set @I = Rand()*100
+
+ 
+
+If @I <= 50
+
+Begin
+
+Insert Into Clientes (Id, Nome, data, Documento, Telefone, Edereco,TipoCliente)
+
+Values(
+	@I,
+	Concat(SubString(@Texto,@I+2,2),
+	DATEADD(d, 1000*Rand() ,GetDate()),
+	Rand()*100,
+	Rand()*100,
+	SubString(@Texto,@I-4,4),SubString(@Texto,@I+2,4)),
+	'Fisico',
+	)
+
+Else	
+	
+Begin
+
+Insert Into Clientes (Id, Nome, data, Documento, Telefone, Edereco,TipoCliente)
+
+Values(
+	@I,
+	Concat(SubString(@Texto,@I+2,2),
+	DATEADD(d, 1000*Rand() ,GetDate()),
+	Rand()*100,
+	Rand()*100,
+	SubString(@Texto,@I-4,4),SubString(@Texto,@I+2,4)),
+	'Juridico',
+	)
+
+
+End
